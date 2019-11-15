@@ -1,64 +1,225 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Welcome to Firebase Hosting</title>
+    <!--Import Google Icon Font-->
+    <link
+      href="http://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!--Import materialize.css-->
+    <!-- Compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css"
+    />
 
-    <!-- update the version number as needed -->
-    <script defer src="/__/firebase/7.3.0/firebase-app.js"></script>
-    <!-- include only the Firebase features as you need -->
-    <script defer src="/__/firebase/7.3.0/firebase-auth.js"></script>
-    <script defer src="/__/firebase/7.3.0/firebase-database.js"></script>
-    <script defer src="/__/firebase/7.3.0/firebase-messaging.js"></script>
-    <script defer src="/__/firebase/7.3.0/firebase-storage.js"></script>
-    <!-- initialize the SDK after all desired features are loaded -->
-    <script defer src="/__/firebase/init.js"></script>
-
-    <style media="screen">
-      body { background: #ECEFF1; color: rgba(0,0,0,0.87); font-family: Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
-      #message { background: white; max-width: 360px; margin: 100px auto 16px; padding: 32px 24px; border-radius: 3px; }
-      #message h2 { color: #ffa100; font-weight: bold; font-size: 16px; margin: 0 0 8px; }
-      #message h1 { font-size: 22px; font-weight: 300; color: rgba(0,0,0,0.6); margin: 0 0 16px;}
-      #message p { line-height: 140%; margin: 16px 0 24px; font-size: 14px; }
-      #message a { display: block; text-align: center; background: #039be5; text-transform: uppercase; text-decoration: none; color: white; padding: 16px; border-radius: 4px; }
-      #message, #message a { box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); }
-      #load { color: rgba(0,0,0,0.4); text-align: center; font-size: 13px; }
-      @media (max-width: 600px) {
-        body, #message { margin-top: 0; background: white; box-shadow: none; }
-        body { border-top: 16px solid #ffa100; }
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      ::-webkit-scrollbar {
+        display: none;
+      }
+      .collection {
+        cursor: pointer;
       }
     </style>
   </head>
+
   <body>
-    <div id="message">
-      <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
+    <div class="row">
+      <div
+        class="col s3"
+        style="padding:0; margin:0; overflow-y:auto; overflow-x:hidden; height:1080px; -ms-overflow-style: none;"
+      >
+        <!-- Grey navigation panel -->
+        <ul class="collection" style="padding:0; margin:0;"></ul>
+      </div>
+
+      <div class="col s9" style="padding:0; margin:0; max-height:1080px;">
+        <!-- Teal page content  -->
+        <nav>
+          <div class="nav-wrapper">
+            <div class="col s12">
+              <a href="#!" class="breadcrumb"><span id="modifyDate"></span></a>
+            </div>
+          </div>
+        </nav>
+
+        <textarea
+          style="height:1000px;"
+          class="textarea"
+          width="100%"
+          rows="1000"
+          placeholder="새로운 메모를 입력해보세요^^"
+        ></textarea>
+      </div>
+
+      <div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+        <a
+          class="btn-floating btn-large waves-effect waves-light red"
+          onclick="initMemo()"
+          ><i class="material-icons">add</i></a
+        >
+      </div>
+
+      <div
+        class="preloader-wrapper big active"
+        style="position:absolute; z-index:1000; left:50%; top:50%; display:none;"
+      >
+        <div class="spinner-layer spinner-blue-only">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div>
+          <div class="gap-patch">
+            <div class="circle"></div>
+          </div>
+          <div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <p id="load">Firebase SDK Loading&hellip;</p>
+
+    <!--Import jQuery before materialize.js-->
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-2.1.1.min.js"
+    ></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-database.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.4.0/firebase-analytics.js"></script>
 
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
-        // // The Firebase SDK is initialized and available here!
-        //
-        // firebase.auth().onAuthStateChanged(user => { });
-        // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
-        // firebase.messaging().requestPermission().then(() => { });
-        // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
-        //
-        // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+      let auth, database, userInfo, selectedKey;
+      // Your web app's Firebase configuration
+      let firebaseConfig = {
+        apiKey: "AIzaSyCAcYTkAVseXReHUavVbv6LvGY0XaKEopY",
+        authDomain: "memo-app-9bffb.firebaseapp.com",
+        databaseURL: "https://memo-app-9bffb.firebaseio.com",
+        projectId: "memo-app-9bffb",
+        storageBucket: "memo-app-9bffb.appspot.com",
+        messagingSenderId: "321623148750",
+        appId: "1:321623148750:web:117857d0272e6a8af7e89f",
+        measurementId: "G-0PV7RM7H5Y"
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
 
-        try {
-          let app = firebase.app();
-          let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] === 'function');
-          document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
-        } catch (e) {
-          console.error(e);
-          document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+      auth = firebase.auth();
+      database = firebase.database();
+
+      let authProvider = new firebase.auth.GoogleAuthProvider();
+
+      auth.onAuthStateChanged(user => {
+        if (user) {
+          // 인증 성공
+          console.log("success");
+          console.log(user);
+          // 메모리스트 출력
+          userInfo = user;
+          get_memo_list();
+          // 인증 실패
+        } else {
+          auth.signInWithPopup(authProvider);
         }
+      });
+
+      const get_memo_list = () => {
+        let memoRef = database.ref("memos/" + userInfo.uid);
+        memoRef.on("child_added", on_child_added);
+        memoRef.on("child_changed", data => {
+          let key = data.key;
+          let txt = data.val().txt;
+          let title = txt.substr(0, txt.indexOf("\n"));
+
+          $("#" + key + "> .title").text(title);
+          $("#" + key + "> .txt").text(txt);
+        });
+      };
+
+      const on_child_added = data => {
+        let key = data.key;
+        let memoData = data.val();
+        let txt = memoData.txt;
+        let title = txt.substr(0, txt.indexOf("\n"));
+        let firstTxt = txt.substr(0, 1);
+
+        let html =
+          "<li id='" +
+          key +
+          '\' class="collection-item avatar" onclick="fn_get_data_one(this.id);">' +
+          '<i class="material-icons circle red">' +
+          firstTxt +
+          "</i>" +
+          '<span class="title">' +
+          title +
+          "</span>" +
+          "<p class='txt'>" +
+          txt +
+          "<br>" +
+          "</p>" +
+          '<a href="#!" class="secondary-content" onclick="fn_delete_data(\'' +
+          key +
+          '\')"><i class="material-icons">grade</i></a>' +
+          "</li>";
+
+        $(".collection").append(html);
+      };
+
+      const fn_get_data_one = key => {
+        selectedKey = key;
+        let memoRef = database
+          .ref("memos/" + userInfo.uid + "/" + key)
+          .once("value")
+          .then(snapshot => {
+            $(".textarea").val(snapshot.val().txt);
+          });
+      };
+
+      const fn_delete_data = key => {
+        let memoRef = database.ref("memos/" + userInfo.uid + "/" + key);
+        memoRef.remove();
+        $("#" + key).remove();
+      };
+
+      const save_data = () => {
+        let memoRef = database.ref("memos/" + userInfo.uid);
+        let txt = $(".textarea").val();
+
+        if (txt === "") return;
+        if (selectedKey) {
+          memoRef = database.ref("memos/" + userInfo.uid + "/" + selectedKey);
+          memoRef.update({
+            txt: txt,
+            createDate: new Date().getTime(),
+            updateDate: new Date().getTime()
+          });
+        } else {
+          memoRef.push({
+            txt: txt,
+            createDate: new Date().getTime()
+          });
+        }
+      };
+
+      const initMemo = () => {
+        $(".textarea").val("");
+        selectedKey = null;
+      };
+
+      $(() => {
+        $(".textarea").blur(() => {
+          save_data();
+        });
       });
     </script>
   </body>

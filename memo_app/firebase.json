@@ -1,6 +1,6 @@
 {
   "database": {
-    "rules": "database.rule.json"
+    "rules": "database.rules.json"
   },
   "hosting": {
     "public": "public",
@@ -8,12 +8,6 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
     ]
   }
 }
