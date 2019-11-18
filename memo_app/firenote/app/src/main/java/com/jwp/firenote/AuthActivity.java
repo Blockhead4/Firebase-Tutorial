@@ -79,8 +79,6 @@ public class AuthActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "인증에 실패하였습니다", Toast.LENGTH_LONG).show();
             }
-
-
         }
     }
 
