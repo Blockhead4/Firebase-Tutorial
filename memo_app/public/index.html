@@ -3,7 +3,7 @@
   <head>
     <!--Import Google Icon Font-->
     <link
-      href="http://fonts.googleapis.com/icon?family=Material+Icons"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
     />
     <!--Import materialize.css-->
@@ -186,9 +186,12 @@
       };
 
       const fn_delete_data = key => {
+        if (!confirm("삭제하시겠습니까?")) return;
+
         let memoRef = database.ref("memos/" + userInfo.uid + "/" + key);
         memoRef.remove();
         $("#" + key).remove();
+        initMemo();
       };
 
       const save_data = () => {

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "321623148750",
+    "firebase_url": "https://memo-app-9bffb.firebaseio.com",
+    "project_id": "memo-app-9bffb",
+    "storage_bucket": "memo-app-9bffb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:321623148750:android:974d0e41f5c0ba73f7e89f",
+        "android_client_info": {
+          "package_name": "com.jwp.firenote"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "321623148750-77l2bj7ff14llas443jpj9ehrq7keda8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl0OGok9q2MaUahHBR3pqXKKV3TX4nxK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "321623148750-77l2bj7ff14llas443jpj9ehrq7keda8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
