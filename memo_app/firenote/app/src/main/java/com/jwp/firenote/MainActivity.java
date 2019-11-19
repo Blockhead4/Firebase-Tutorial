@@ -105,24 +105,12 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         mNavigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         View headerView = mNavigationView.getHeaderView(0);
         txtEmail = (TextView) headerView.findViewById(R.id.txtEmail);
         txtName = (TextView) headerView.findViewById(R.id.txtName);
         mNavigationView.setNavigationItemSelectedListener(this);
         profileUpdate();
         displayMemos();
-
-//        mAppBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-//                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
-//                .setDrawerLayout(drawer)
-//                .build();
-
-//        NavController navController = Navigation.findNavController(this, R.id.content_main);
-//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-//        NavigationUI.setupWithNavController(navigationView, navController);
     }
 
     @Override
@@ -154,13 +142,6 @@ public class MainActivity extends AppCompatActivity
 
         return super.onOptionsItemSelected(item);
     }
-
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        NavController navController = Navigation.findNavController(this, R.id.content_main);
-//        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-//                || super.onSupportNavigateUp();
-//    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
@@ -296,12 +277,10 @@ public class MainActivity extends AppCompatActivity
 
                     @Override
                     public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
                     }
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-
                     }
                 });
     }
